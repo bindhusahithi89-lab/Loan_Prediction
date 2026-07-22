@@ -26,7 +26,6 @@ st.set_page_config(
 )
 
 # Custom CSS to style the Streamlit interface with a professional gradient background
-
 st.markdown("""
 <style>
 .stApp {
@@ -65,28 +64,34 @@ div[data-testid="stSelectbox"] label {
 
 /* --- ONLY CHANGE LABELS ("Accuracy", "Precision", etc.) --- */
 div[data-testid="stMetricLabel"] p {
-    color: #00E5FF !important;
+    color: #00E5FF !important; /* Bright neon blue color */
     font-weight: 700 !important;
     font-size: 16px !important;
 }
-
-/* --- Metric Labels --- */
+            /* --- Metric Labels --- */
 div[data-testid="stMetricLabel"],
-div[data-testid="stMetricLabel"] * {
+div[data-testid="stMetricLabel"] *,
+div[data-testid="stMetricLabel"] div,
+div[data-testid="stMetricLabel"] p,
+div[data-testid="stMetricLabel"] span,
+[data-testid="stMetricLabel"] > div > p,
+[data-testid="stMetricLabel"] > div,
+label[data-testid="stMetricLabel"] {
     color: #00E5FF !important;
     font-weight: 700 !important;
     font-size: 16px !important;
 }
-
-/* --- Metric Values --- */
+            /* --- Metric Values --- */
 div[data-testid="stMetricValue"],
-div[data-testid="stMetricValue"] * {
+div[data-testid="stMetricValue"] *,
+div[data-testid="stMetricValue"] div,
+div[data-testid="stMetricValue"] p,
+div[data-testid="stMetricValue"] span {
     color: white !important;
     font-weight: 800 !important;
 }
 </style>
 """, unsafe_allow_html=True)
-
 # -----------------------------
 # LOAD DATA
 # -----------------------------
@@ -268,7 +273,7 @@ st.subheader("📊 Confusion Matrix")
 
 cm = confusion_matrix(y_test, y_pred)
 
-fig, ax = plt.subplots(figsize=(3.5, 2.8))  # ✅ reduced size only
+fig, ax = plt.subplots(figsize=(4, 3))  # ✅ reduced size only
 
 sns.heatmap(
     cm,
